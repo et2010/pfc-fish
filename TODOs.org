@@ -1,0 +1,9 @@
+#+FILETAGS: :repo:pfc-fish:
+
+* DONE 修正命令跨行时face不正确的问题
+CLOSED: [2016-07-12 Tue 08:26]
+* DONE 修正方括号内的fish symbols的face不正确的问题
+CLOSED: [2016-07-12 Tue 08:26]
+* TODO 实现自动缩进
+* TODO 优化高亮代码
+目前的代码使用的是搜索高亮，多次使用正则表达式以及anchor matcher（其核心也是正则表达式），当打开较大的文件浏览时，速度较慢。
