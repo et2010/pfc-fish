@@ -69,8 +69,6 @@ Each entry is either:
     :mode ("\\(?:\\.\\(?:fis\\|p\\(?:2\\(?:d\\(?:at\\|vr\\)\\|fis\\)\\|3\\(?:d\\(?:at\\|vr\\)\\|fis\\)\\)\\)\\)" . pfc-fish-mode)
     :init
     (progn
-      (add-hook 'pfc-fish-mode-hook (lambda () (company-mode)
-                                      (setq-local company-backends company-backends-pfc-fish-mode)))
       (add-hook 'pfc-fish-mode-hook 'turn-on-eldoc-mode)
       (spacemacs/declare-prefix-for-mode 'pfc-fish-mode "mh" "help")
       (spacemacs/set-leader-keys-for-major-mode 'pfc-fish-mode
@@ -94,10 +92,9 @@ Each entry is either:
   (use-package company-pfc
     :defer t
     :init
-    (progn
-      ;(with-eval-after-load 'company
-        ;(require 'company-pfc))
-      (push 'company-pfc company-backends-pfc-fish-mode))))
+    (spacemacs|add-company-backends
+      :backends 'company-pfc
+      :modes pfc-fish-mode)))
 
 (defun pfc-fish/init-enlive ()
   (use-package enlive
