@@ -93,7 +93,7 @@ Each entry is either:
     :defer t
     :init
     (spacemacs|add-company-backends
-      :backends company-pfc
+      :backends (company-pfc company-capf)
       :modes pfc-fish-mode)))
 
 (defun pfc-fish/init-enlive ()
