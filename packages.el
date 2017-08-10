@@ -36,15 +36,11 @@
     enlive
     eldoc))
 
-(defvar pfc-exts-regexp
-  "\\(?:\\.\\(?:fis\\|p\\(?:2\\(?:d\\(?:at\\|vr\\)\\|fis\\)\\|3\\(?:d\\(?:at\\|vr\\)\\|fis\\)\\)\\)\\)"
-  "Regexps to match file extensions of pfc.")
-
 (defun pfc-fish/init-pfc-fish ()
   (use-package pfc-fish
     :defer t
     :commands pfc-fish-mode
-    :mode (pfc-exts-regexp . pfc-fish-mode)
+    :mode ("\\(?:\\.\\(?:fis\\|p\\(?:2\\(?:d\\(?:at\\|vr\\)\\|fis\\)\\|3\\(?:d\\(?:at\\|vr\\)\\|fis\\)\\)\\)\\)" . pfc-fish-mode)
     :init
     (progn
       (spacemacs/declare-prefix-for-mode 'pfc-fish-mode "mh" "help")
