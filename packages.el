@@ -32,35 +32,9 @@
 (defconst pfc-fish-packages
   '((pfc-fish :location local)
     (ob-pfc-fish :location local)
-    (company-pfc :location local :toggle (configuration-layer/package-usedp 'company))
+    (company-pfc :location local :requires company)
     enlive
-    eldoc)
-  "The list of Lisp packages required by the pfc-fish layer.
-
-Each entry is either:
-
-1. A symbol, which is interpreted as a package to be installed, or
-
-2. A list of the form (PACKAGE KEYS...), where PACKAGE is the
-    name of the package to be installed or loaded, and KEYS are
-    any number of keyword-value-pairs.
-
-    The following keys are accepted:
-
-    - :excluded (t or nil): Prevent the package from being loaded
-      if value is non-nil
-
-    - :location: Specify a custom installation location.
-      The following values are legal:
-
-      - The symbol `elpa' (default) means PACKAGE will be
-        installed using the Emacs package manager.
-
-      - The symbol `local' directs Spacemacs to load the file at
-        `./local/PACKAGE/PACKAGE.el'
-
-      - A list beginning with the symbol `recipe' is a melpa
-        recipe.  See: https://github.com/milkypostman/melpa#recipe-format")
+    eldoc))
 
 (defun pfc-fish/init-pfc-fish ()
   (use-package pfc-fish
