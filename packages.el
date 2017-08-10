@@ -64,9 +64,13 @@
   (use-package company-pfc
     :defer t
     :init
-    (spacemacs|add-company-backends
-      :backends (company-pfc company-capf)
-      :modes pfc-fish-mode)))
+    (progn
+      (when (configuration-layer/package-used-p 'pfc-fish)
+        (spacemacs|add-company-backends
+          :backends (company-pfc company-dabbrev-code company-yasnippet)
+          :modes pfc-fish-mode))
+      (with-eval-after-load 'company-dabbrev-code
+        (push 'pfc-fish-mode company-dabbrev-code-modes)))))
 
 (defun pfc-fish/init-enlive ()
   (use-package enlive
