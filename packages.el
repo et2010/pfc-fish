@@ -36,23 +36,25 @@
     enlive
     eldoc))
 
+(defvar pfc-exts-regexp
+  "\\(?:\\.\\(?:fis\\|p\\(?:2\\(?:d\\(?:at\\|vr\\)\\|fis\\)\\|3\\(?:d\\(?:at\\|vr\\)\\|fis\\)\\)\\)\\)"
+  "Regexps to match file extensions of pfc.")
+
 (defun pfc-fish/init-pfc-fish ()
   (use-package pfc-fish
     :defer t
     :commands pfc-fish-mode
-    :mode ("\\(?:\\.\\(?:fis\\|p\\(?:2\\(?:d\\(?:at\\|vr\\)\\|fis\\)\\|3\\(?:d\\(?:at\\|vr\\)\\|fis\\)\\)\\)\\)" . pfc-fish-mode)
+    :mode (pfc-exts-regexp . pfc-fish-mode)
     :init
     (progn
-      (add-hook 'pfc-fish-mode-hook 'turn-on-eldoc-mode)
       (spacemacs/declare-prefix-for-mode 'pfc-fish-mode "mh" "help")
       (spacemacs/set-leader-keys-for-major-mode 'pfc-fish-mode
         "hh" 'pfc-describe-thing-at-point)
       (add-to-list 'display-buffer-alist
-                   '("\\*eww\\*" . ((display-buffer-reuse-window
+                   '("\\*w3m\\*" . ((display-buffer-reuse-window
                                      display-buffer-pop-up-window)
                                     . ((inhibit-duplicate-buffer . t)
-                                       (inhibit-same-window      . t)))))
-      )))
+                                       (inhibit-same-window      . t))))))))
 
 (defun pfc-fish/init-ob-pfc-fish ()
   (use-package ob-pfc-fish
