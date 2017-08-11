@@ -12,5 +12,7 @@
 
 (defun et/file-ascii-p (path)
   (let ((encode (shell-command-to-string (concat "file " path)))
-        (prefix (format "%s: ASCII " path)))
-    (string-prefix-p prefix encode)))
+        (prefix-ascii (format "%s: ASCII " path))
+        (prefix-empty (format "%s: empty" path)))
+    (or (string-prefix-p prefix-ascii encode)
+        (string-prefix-p prefix-empty encode))))
